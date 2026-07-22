@@ -162,11 +162,19 @@ const projects: Project[] = [
     ],
   },
   {
-    image: '/projects/thz-biosensor.png',
+    image: '/projects/thz-biosensor/sensing-workflow.png',
     title: 'THz Metamaterial Biosensor',
-    desc: 'Machine-learning-assisted terahertz biosensor for cancer detection.',
+    desc: 'Machine-learning-assisted terahertz metamaterial biosensor that discriminates cancerous from normal breast tissue via its terahertz spectral response.',
     metrics: ['ML Assisted', 'Cancer Detection'],
     tags: ['THz', 'Metamaterial', 'Machine Learning'],
+    galleryLabel: 'View sensing concept',
+    gallery: [
+      {
+        src: '/projects/thz-biosensor/sensing-workflow.png',
+        caption:
+          'Sensing workflow: a THz source illuminates the metamaterial chip (gold split-ring resonators, sample layer, coverslip) holding the tissue sample, and the optical probe feeds a spectrometric system that converts the response to an electrical signal for ML classification of normal vs. cancer cells.',
+      },
+    ],
   },
   {
     image: '/projects/rocket-ignition/prototype.jpg',
