@@ -20,6 +20,7 @@ type Project = {
   metrics: string[]
   tags: string[]
   gallery?: GalleryItem[]
+  galleryLabel?: string
 }
 
 const projects: Project[] = [
@@ -121,18 +122,44 @@ const projects: Project[] = [
     ],
   },
   {
-    image: '/projects/stm32-ble.png',
+    image: '/projects/stm32-ble/render-3d.jpeg',
     title: 'STM32WB55 BLE Module',
-    desc: 'Wireless BLE module built on a dense 4-layer PCB stackup.',
-    metrics: ['4-Layer PCB', 'KiCad 10'],
+    desc: 'Wireless BLE module built on a dense 4-layer PCB stackup in KiCad, integrating an STM32WB55, USB-C, and an on-board 2.4 GHz RF matching network.',
+    metrics: ['4-Layer PCB', 'KiCad'],
     tags: ['STM32WB55', 'BLE', 'KiCad'],
+    galleryLabel: 'View PCB gallery',
+    gallery: [
+      {
+        src: '/projects/stm32-ble/render-3d.jpeg',
+        caption:
+          'KiCad 3D viewer render of the assembled BLE module with USB-C, RF section, and BOOT button.',
+      },
+      {
+        src: '/projects/stm32-ble/layout-2d.jpeg',
+        caption:
+          'KiCad PCB editor layout showing the dense routing across the 4-layer stackup (233 pads, 154 vias, 265 tracks).',
+      },
+    ],
   },
   {
-    image: '/projects/stm32-devboard.png',
+    image: '/projects/stm32-devboard/render-3d.jpeg',
     title: 'STM32 Development Board',
-    desc: 'Full-featured development board designed in Altium Designer.',
+    desc: 'Full-featured development board designed in Altium Designer, breaking out an STM32 MCU with SWD debug header, micro-USB, and a GPIO expansion connector.',
     metrics: ['4-Layer PCB', 'Altium Designer'],
     tags: ['STM32', 'Altium', 'PCB Design'],
+    galleryLabel: 'View PCB gallery',
+    gallery: [
+      {
+        src: '/projects/stm32-devboard/render-3d.jpeg',
+        caption:
+          'Altium 3D render of the STM32 development board with SWD header, micro-USB, GPIO FPC connector, crystal, and AMS LDO regulator.',
+      },
+      {
+        src: '/projects/stm32-devboard/layout-2d.jpeg',
+        caption:
+          'Altium 2D PCB layout showing the copper routing around the STM32, SWD, USB, and GPIO sections with mounting holes.',
+      },
+    ],
   },
   {
     image: '/projects/thz-biosensor.png',
@@ -142,11 +169,19 @@ const projects: Project[] = [
     tags: ['THz', 'Metamaterial', 'Machine Learning'],
   },
   {
-    image: '/projects/rocket-ignition.png',
+    image: '/projects/rocket-ignition/prototype.jpg',
     title: 'Wireless Rocket Ignition System',
-    desc: 'Remote wireless ignition and control system for rocket testing.',
+    desc: 'Remote wireless ignition and control system for rocket testing, built around an Arduino and RF transceiver on a custom perfboard inside a protective enclosure.',
     metrics: ['Wireless Control', 'Aerospace'],
     tags: ['Embedded', 'RF Link', 'Aerospace'],
+    galleryLabel: 'View prototype',
+    gallery: [
+      {
+        src: '/projects/rocket-ignition/prototype.jpg',
+        caption:
+          'Bench prototype of the wireless ignition controller: Arduino and RF transceiver on a perfboard in an enclosure, wired to the ignition leads.',
+      },
+    ],
   },
 ]
 
@@ -315,7 +350,8 @@ export function Projects() {
                   {project.gallery && (
                     <span className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full border border-border bg-background/70 px-2.5 py-1 text-xs font-medium text-foreground backdrop-blur-sm">
                       <Images className="h-3.5 w-3.5 text-primary" />
-                      {project.gallery.length} figures
+                      {project.gallery.length}{' '}
+                      {project.gallery.length === 1 ? 'figure' : 'figures'}
                     </span>
                   )}
                 </div>
@@ -353,7 +389,7 @@ export function Projects() {
                         className="inline-flex items-center justify-center gap-2 rounded-xl border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
                       >
                         <Images className="h-4 w-4" />
-                        View simulation results
+                        {project.galleryLabel ?? 'View simulation results'}
                       </button>
                     )}
                   </div>
