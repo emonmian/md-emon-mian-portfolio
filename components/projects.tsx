@@ -2,11 +2,16 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import Image from 'next/image'
-import { X, ChevronLeft, ChevronRight, Images } from 'lucide-react'
+import { X, ChevronLeft, ChevronRight, Images, Play } from 'lucide-react'
 import { SectionHeading } from '@/components/section-heading'
 import { Reveal } from '@/components/reveal'
 
-type GalleryItem = { src: string; caption: string }
+type GalleryItem = {
+  src: string
+  caption: string
+  type?: 'image' | 'video'
+  poster?: string
+}
 
 type Project = {
   image: string
@@ -56,11 +61,35 @@ const projects: Project[] = [
     ],
   },
   {
-    image: '/projects/yagi-antenna.png',
+    image: '/projects/yagi/model-3d.jpg',
     title: '433 MHz High-Gain Yagi-Uda Antenna',
-    desc: 'Directional antenna designed and validated for long-range telemetry.',
-    metrics: ['Gain: ~10 dB'],
-    tags: ['CST Studio', 'VNA', 'RF Design'],
+    desc: 'Directional 433 MHz Yagi-Uda designed in CST Studio and validated on a NanoVNA-F V2, delivering high forward gain for long-range telemetry.',
+    metrics: ['Measured: 8.68 dB', 'Zin ≈ 73 Ω'],
+    tags: ['CST Studio', 'NanoVNA', 'RF Design'],
+    gallery: [
+      {
+        src: '/projects/yagi/model-3d.jpg',
+        caption:
+          'CST Studio 3D model showing the reflector, driven dipole, and director elements with the parametric length list.',
+      },
+      {
+        src: '/projects/yagi/farfield-cuts.jpg',
+        caption:
+          'Far-field cut setup in CST Studio with the Yagi elements inside the theta/phi radiation sphere.',
+      },
+      {
+        src: '/projects/yagi/vna-s21.jpg',
+        caption:
+          'NanoVNA-F V2 measured S21 (gain) trace reading 8.68 dB at the 435.5 MHz marker.',
+      },
+      {
+        type: 'video',
+        src: '/projects/yagi/demo.mp4',
+        poster: '/projects/yagi/vna-s21.jpg',
+        caption:
+          'Bench demonstration of the fabricated Yagi-Uda antenna during measurement.',
+      },
+    ],
   },
   {
     image: '/projects/dualband/array-geometry.jpeg',
@@ -187,13 +216,24 @@ function Lightbox({
           </button>
 
           <div className="glass gradient-border relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-card">
-            <Image
-              src={current.src || '/placeholder.svg'}
-              alt={current.caption}
-              fill
-              sizes="(max-width: 768px) 100vw, 800px"
-              className="object-contain p-2"
-            />
+            {current.type === 'video' ? (
+              <video
+                key={current.src}
+                src={current.src}
+                poster={current.poster}
+                controls
+                playsInline
+                className="absolute inset-0 h-full w-full object-contain p-2"
+              />
+            ) : (
+              <Image
+                src={current.src || '/placeholder.svg'}
+                alt={current.caption}
+                fill
+                sizes="(max-width: 768px) 100vw, 800px"
+                className="object-contain p-2"
+              />
+            )}
           </div>
 
           <button
@@ -225,12 +265,20 @@ function Lightbox({
               }`}
             >
               <Image
-                src={item.src || '/placeholder.svg'}
+                src={
+                  (item.type === 'video' ? item.poster : item.src) ||
+                  '/placeholder.svg'
+                }
                 alt=""
                 fill
                 sizes="64px"
                 className="object-cover"
               />
+              {item.type === 'video' && (
+                <span className="absolute inset-0 flex items-center justify-center bg-background/40">
+                  <Play className="h-4 w-4 text-foreground" fill="currentColor" />
+                </span>
+              )}
             </button>
           ))}
         </div>
