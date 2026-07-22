@@ -63,11 +63,33 @@ const projects: Project[] = [
     tags: ['CST Studio', 'VNA', 'RF Design'],
   },
   {
-    image: '/projects/dualband-antenna.png',
+    image: '/projects/dualband/array-geometry.jpeg',
     title: 'Dual-Band GPS/WLAN Antenna Array',
-    desc: 'Compact dual-resonant array covering navigation and WLAN bands.',
-    metrics: ['1.5 GHz + 2.4 GHz'],
-    tags: ['Dual-Band', 'GPS', 'WLAN'],
+    desc: 'Compact U-slot microstrip array simulated in CST Studio, resonating simultaneously in the GPS L1 (1.5 GHz) and WLAN (2.4 GHz) bands.',
+    metrics: ['1.5 GHz + 2.4 GHz', 'S11: −23.4 dB'],
+    tags: ['CST Studio', 'Dual-Band', 'GPS', 'WLAN'],
+    gallery: [
+      {
+        src: '/projects/dualband/element-geometry.jpeg',
+        caption:
+          'Single U-slot patch element on a grounded substrate with microstrip feed line.',
+      },
+      {
+        src: '/projects/dualband/s11-element.jpeg',
+        caption:
+          'Single-element S1,1 showing dual resonances at 1.5 GHz (−23.4 dB) and 2.43 GHz (−10.6 dB).',
+      },
+      {
+        src: '/projects/dualband/array-geometry.jpeg',
+        caption:
+          'Two-element U-slot array sharing a common ground plane and feed, with the u/v/w coordinate frame.',
+      },
+      {
+        src: '/projects/dualband/s11-array.jpeg',
+        caption:
+          'Array S1,1 confirming the dual-band response at 1.5 GHz (−13.2 dB) and 2.45 GHz (−10.9 dB).',
+      },
+    ],
   },
   {
     image: '/projects/stm32-ble.png',
