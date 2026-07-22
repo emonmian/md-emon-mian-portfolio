@@ -36,10 +36,10 @@ const categories = [
     icon: Code,
     title: 'Programming & AI',
     skills: [
-      { name: 'C Programming', level: 45 },
-      { name: 'Machine Learning', level: 45 },
+      { name: 'C Programming', level: 85 },
+      { name: 'Machine Learning', level: 80 },
       { name: 'MATLAB', level: 88 },
-      { name: 'Python Basics', level: 40 },
+      { name: 'Python Basics', level: 70 },
     ],
   },
   {
