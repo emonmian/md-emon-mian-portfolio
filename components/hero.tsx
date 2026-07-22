@@ -5,31 +5,14 @@ import { motion } from 'framer-motion'
 import { Download, Mail, ArrowRight } from 'lucide-react'
 import { LinkedInIcon, ScholarIcon } from '@/components/brand-icons'
 
-const roles = [
-  'Electrical Engineer',
-  'RF & Embedded Systems Engineer',
-  'Hardware Designer',
-  'Research Analyst',
-]
-
 const stats = [
-  { value: '2+', label: 'Years Experience' },
-  { value: '8+', label: 'Research Works' },
+  { value: '4+', label: 'Conference Publications' },
+  { value: '2+', label: 'Journal Manuscripts' },
   { value: '7+', label: 'Engineering Projects' },
-  { value: '3+', label: 'Conference Publications' },
+  { value: '2+', label: 'Years Research & Engineering Experience' },
 ]
 
 export function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-
-  useEffect(() => {
-    const id = setInterval(
-      () => setRoleIndex((i) => (i + 1) % roles.length),
-      2600,
-    )
-    return () => clearInterval(id)
-  }, [])
-
   return (
     <section
       id="home"
@@ -50,27 +33,30 @@ export function Hero() {
             Available for research & engineering roles
           </span>
 
-          <h1 className="font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl md:text-7xl">
+          <p className="mb-3 font-mono text-sm text-muted-foreground">
             Md. Emon Mian
+          </p>
+
+          <h1 className="gradient-text font-heading text-4xl font-bold tracking-tight text-balance sm:text-6xl md:text-7xl">
+            RF Engineer &amp; Research Analyst
           </h1>
 
-          <div className="mt-4 flex h-8 items-center justify-center overflow-hidden sm:h-10">
-            <motion.span
-              key={roleIndex}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4 }}
-              className="gradient-text font-heading text-xl font-semibold sm:text-2xl md:text-3xl"
-            >
-              {roles[roleIndex]}
-            </motion.span>
-          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="mt-4 font-heading text-lg font-semibold text-foreground/90 sm:text-xl md:text-2xl"
+          >
+            Electrical Engineer | RF &amp; Hardware Design Engineer
+          </motion.p>
 
-          <p className="mt-6 max-w-2xl text-pretty leading-relaxed text-muted-foreground sm:text-lg">
-            RF &amp; Hardware Design Engineer and Research Enthusiast focused on
-            Antenna Design, Metamaterials, and THz Biosensing — bridging rigorous
-            electromagnetic research with practical hardware systems.
+          <p className="mt-6 max-w-3xl text-pretty leading-relaxed text-muted-foreground sm:text-lg">
+            RF and Microwave Engineering enthusiast with hands-on experience in
+            antenna design, electromagnetic simulation, and metamaterial-based
+            sensing systems. Experienced in CST Studio Suite, antenna
+            optimization, RF communication, and embedded hardware integration for
+            aerospace and biomedical applications. Currently focused on THz
+            biosensing, metamaterials, and mmWave antenna research.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
